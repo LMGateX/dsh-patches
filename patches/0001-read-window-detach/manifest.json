@@ -1,0 +1,11 @@
+{
+  "id": "0001-read-window-detach",
+  "package": "@deepseek-ai/dsh",
+  "version": "0.2.2-rc.1",
+  "targetPackage": "@deepseek-ai/dsh-tool-fs",
+  "targetVersion": "0.2.2-rc.1",
+  "target": "node_modules/@deepseek-ai/dsh-tool-fs/lib/index.js",
+  "originalSha256": "0e866969b6bf1aa93407ccd9c944b50bc27a1d961b7e4209ed60bd2b73d28805",
+  "patchedSha256": "968118a075a97226227ff5d3123c9b1c99195e3a8b8bbac3b17da0e62a88f00e",
+  "testedNode": "24.12.0"
+}

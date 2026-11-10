@@ -1,0 +1,18 @@
+# Never publish runtime diagnostics or local backups.
+node_modules/
+backups/
+.local-patch-backups/
+*.bak
+*.original
+*.heapsnapshot
+*.heapprofile
+*.memory.jsonl
+report.*.json
+*.log
+.env
+.env.*
+*.pem
+*.key
+__pycache__/
+*.pyc
+.DS_Store

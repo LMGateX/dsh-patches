@@ -1,0 +1,12 @@
+--- a/node_modules/@deepseek-ai/dsh-tool-fs/lib/index.js
++++ b/node_modules/@deepseek-ai/dsh-tool-fs/lib/index.js
+@@ -46,6 +46,8 @@
+ 	acc.outputBytes += bytes;
++	// Detach accepted text so a small line cannot retain the whole decoded file.
++	const detachedText = Buffer.from(text, "utf16le").toString("utf16le");
+ 	acc.lines.push({
+ 		number: acc.totalLines,
+-		text
++		text: detachedText
+ 	});
+ }
