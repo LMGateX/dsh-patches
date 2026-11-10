@@ -1,0 +1,43 @@
+--- a/node_modules/@deepseek-ai/dsh-session/lib/index.js
++++ b/node_modules/@deepseek-ai/dsh-session/lib/index.js
+@@ -1324,6 +1324,13 @@
+ * @typert object
+ */
+ var Session = class Session {
++ static #canonicalLiveEvents = new WeakSet();
++ /** Query publication provenance without granting callers a marking capability. */
++ static isCanonicalLiveEvent(event) { return Session.#canonicalLiveEvents.has(event); }
++ static { Object.defineProperty(this, "isCanonicalLiveEvent", { writable: false, configurable: false }); }
++ static #markCanonicalLiveEvent(event) {
++  if (typeof event.type === "string" && Number.isSafeInteger(event.seq) && event.seq >= 0 && !Object.is(event.seq, -0) && Number.isSafeInteger(event.time) && event.time >= 0 && !Object.is(event.time, -0)) Session.#canonicalLiveEvents.add(event);
++ }
+ 	log = [];
+ 	/** Single incremental owner of surface acceptance and projection state. */
+ 	surfaceManager;
+@@ -1541,6 +1548,7 @@
+ 			...surfaceMetadataSnapshot
+ 		});
+ 		validateSessionEventData(event, `session event "${type}" at seq ${event.seq}`);
++		Session.#markCanonicalLiveEvent(event);
+ 		this.commit(event, entry);
+ 		return event;
+ 	}
+@@ -1566,6 +1574,7 @@
+ 			ignorable: true
+ 		});
+ 		assertPluginRecordEvent(record);
++		Session.#markCanonicalLiveEvent(record);
+ 		this.commit(record, entry);
+ 		return record.seq;
+ 	}
+--- a/node_modules/@deepseek-ai/dsh-session-persistence-jsonl/lib/index.js
++++ b/node_modules/@deepseek-ai/dsh-session-persistence-jsonl/lib/index.js
+@@ -185,7 +185,7 @@
+ 	*   (the events stay buffered; the next {@link drainLive} retries loudly).
+ 	*/
+ 	enqueueLive(event, reportBackgroundFailure) {
+-		this.buffered.push(structuredClone(event));
++		this.buffered.push(Session.isCanonicalLiveEvent?.(event) === true ? event : structuredClone(event));
+ 		if (this.batchTimer !== void 0 || this.drainPaused) return;
+ 		this.batchTimer = setTimeout(() => {
+ 			this.batchTimer = void 0;

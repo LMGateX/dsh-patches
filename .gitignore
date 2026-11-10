@@ -8,6 +8,8 @@ backups/
 *.heapprofile
 *.memory.jsonl
 report.*.json
+installation-receipt*.json
+post-install-regression*.txt
 *.log
 .env
 .env.*

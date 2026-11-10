@@ -1,0 +1,24 @@
+{
+  "id": "0002-immutable-live-events",
+  "status": "experimental",
+  "dshVersion": "0.2.2-rc.1",
+  "testedNodeVersion": "v24.12.0",
+  "targets": [
+    {
+      "name": "session",
+      "package": "@deepseek-ai/dsh-session",
+      "version": "0.2.2-rc.1",
+      "path": "node_modules/@deepseek-ai/dsh-session/lib/index.js",
+      "originalSha256": "6fad466aa1f7aa64bfa038681ead5721f66c88e9891e25d357d2b8edbccd5494",
+      "patchedSha256": "8aec531e682689023a979ac86ca45a179d6160441332c6817bda2aba627ab712"
+    },
+    {
+      "name": "writer",
+      "package": "@deepseek-ai/dsh-session-persistence-jsonl",
+      "version": "0.2.2-rc.1",
+      "path": "node_modules/@deepseek-ai/dsh-session-persistence-jsonl/lib/index.js",
+      "originalSha256": "69efef5f84dddf947032bc1425067878fa610416c8885acde2ded9b01230c9b7",
+      "patchedSha256": "e56c6cfc2cb3fbeaf38e6d779cf1f5cdc04cf43632384f7e94965ab313cc556d"
+    }
+  ]
+}

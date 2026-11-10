@@ -1,12 +1,13 @@
 # DSH patches
 
-可复用、可审查的 DeepSeek Harness 本地补丁集合，非官方发行版。每项补丁独立存放，包含适用版本、最小差异、合成回归测试和应用/回滚工具。
+可复用、可审查的 DeepSeek Harness 本地补丁集合，非官方发行版。每项补丁独立存放，包含适用版本、最小差异、合成回归测试和部署说明；可部署项另附应用/回滚工具，研究候选会明确标注。
 
 ## 补丁索引
 
 | 编号 | 修复 | 已测试版本 |
 |---|---|---|
 | [0001](patches/0001-read-window-detach/README.md) | 分页读取的小字符串保留整份文件的问题 | DSH / dsh-tool-fs 0.2.2-rc.1，Node 24.12.0 |
+| [0002（实验性）](patches/0002-immutable-live-events/README.md) | 对内部构造的不可变事件消除持久化冗余克隆；已验证本地安装，长期效果待观察 | DSH / dsh-session / dsh-session-persistence-jsonl 0.2.2-rc.1，Node 24.12.0 |
 
 ## 使用原则
 
